@@ -1,6 +1,7 @@
 // 导入flutter的ui库
 
 import 'package:flutter/material.dart';
+import 'package:flutter_learning/my_kxz_page.dart';
 
 main() => runApp(const MyApp());
 
@@ -26,14 +27,16 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           children: [
             _buildLayoutArea(),
-
+            MyExpandContainer(title: "跳转到仿矿小助界面",click: (){
+              toMyKxzPage(context);
+            },)
           ],
         ),
       ),
     );
   }
 
-  Widget _buildLayoutArea(){
+  Widget _buildLayoutArea() {
     return Column(
       children: [
         MyExpandContainer(title: "Column:主轴", children: [
@@ -146,8 +149,7 @@ class MyHomePage extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                      child: _buildBlock(
-                          text: "我被包裹在了Expanded中\n我在主轴方向上展开了！")),
+                      child: _buildBlock(text: "我被包裹在了Expanded中\n我在主轴方向上展开了！")),
                   _buildBlock(color: Colors.red)
                 ],
               )),
@@ -158,12 +160,10 @@ class MyHomePage extends StatelessWidget {
                   Expanded(flex: 3, child: _buildBlock(text: "flex:3")),
                   Expanded(
                       flex: 2,
-                      child:
-                      _buildBlock(text: "flex:2", color: Colors.red)),
+                      child: _buildBlock(text: "flex:2", color: Colors.red)),
                   Expanded(
                       flex: 1,
-                      child:
-                      _buildBlock(text: "flex:1", color: Colors.green))
+                      child: _buildBlock(text: "flex:1", color: Colors.green))
                 ],
               )),
         ]),
@@ -208,33 +208,32 @@ class MyHomePage extends StatelessWidget {
                   Positioned(
                     left: 40,
                     top: 10,
-                    child: _buildBlock(
-                        text: "left: 40\ntop: 10",
-                        sideLength: 100),
+                    child:
+                        _buildBlock(text: "left: 40\ntop: 10", sideLength: 100),
                   ),
                   Positioned(
                     right: 0,
                     bottom: 50,
                     child: _buildBlock(
-                        text: "right: 0\nbottom: 50",
-                        sideLength: 100),
+                        text: "right: 0\nbottom: 50", sideLength: 100),
                   ),
                   Positioned(
                     bottom: 0,
                     left: 70,
                     child: _buildBlock(
-                        text: "left: 70\nbottom: 0",
-                        sideLength: 100),
+                        text: "left: 70\nbottom: 0", sideLength: 100),
                   ),
                 ],
               )),
-
           _buildContainer(
               title: "Position.fill 占满Stack",
               child: Stack(
                 alignment: Alignment.topLeft,
                 children: [
-                  Positioned.fill(child: _buildBlock(text: "我被包裹在了Position.fill中\n占满了所有空间！",color: Colors.grey))
+                  Positioned.fill(
+                      child: _buildBlock(
+                          text: "我被包裹在了Position.fill中\n占满了所有空间！",
+                          color: Colors.grey))
                 ],
               )),
         ]),
@@ -316,11 +315,20 @@ class MyHomePage extends StatelessWidget {
 }
 
 class MyExpandContainer extends StatefulWidget {
+  // 标题
   final String title;
-  final List<Widget> children;
+  // 点击按钮后会展开的组件,与click属性不能同时赋值
+  final List<Widget>? children;
+  // 点击事件，如果click被赋值，那么点击之后不会将children显示出来，而是会执行click()
+  final void Function()? click;
 
-  const MyExpandContainer({Key? key, required this.title, required this.children})
-      : super(key: key);
+  const MyExpandContainer(
+      {Key? key, required this.title, this.children, this.click})
+      : assert(
+            (click != null && children == null) ||
+                (click == null && children != null),
+            "Do not use click and children at the same time."),
+        super(key: key);
 
   @override
   State<MyExpandContainer> createState() => _MyExpandContainerState();
@@ -349,7 +357,8 @@ class _MyExpandContainerState extends State<MyExpandContainer> {
                       Expanded(
                         child: Text(
                           widget.title,
-                          style: const TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
                           maxLines: 100,
                         ),
                       ),
@@ -371,28 +380,34 @@ class _MyExpandContainerState extends State<MyExpandContainer> {
                 ],
               ),
             ),
-            AnimatedCrossFade(
-                firstChild: Container(),
-                secondChild: Container(
-                  margin: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue),
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Column(
-                    children: widget.children,
-                  ),
-                ),
-                crossFadeState: expanded
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
-                duration: const Duration(milliseconds: 500))
+            widget.children != null
+                ? AnimatedCrossFade(
+                    firstChild: Container(),
+                    secondChild: Container(
+                      margin: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Column(
+                        children: widget.children!,
+                      ),
+                    ),
+                    crossFadeState: expanded
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                    duration: const Duration(milliseconds: 500))
+                : Container()
           ],
         ),
         Positioned.fill(child: InkWell(
           onTap: () {
-            setState(() {
-              expanded = !expanded;
-            });
+            if(widget.click==null){
+              setState(() {
+                expanded = !expanded;
+              });
+            }else{
+              widget.click!();
+            }
           },
         ))
       ],
