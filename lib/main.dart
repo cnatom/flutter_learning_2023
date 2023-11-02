@@ -31,6 +31,9 @@ class MyHomePage extends StatelessWidget {
     // -  顶栏：appBar
     // -  内容：body
     // -  底部导航栏：bottomNavigationBar
+    // 图示：
+    //  - https://book.flutterchina.club/assets/img/5-18.f83914b2.png
+    //  - https://book.flutterchina.club/assets/img/5-19.a2dab018.png
     return Scaffold(
       // Scaffold的顶部工具栏appBar
       appBar: AppBar(
