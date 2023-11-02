@@ -1,16 +1,11 @@
-# flutter_learning
+# 翔工作室客户端UI培训项目
 
-A new Flutter project.
+## 使用
 
-## Getting Started
+1. 安装Github Desktop： [https://desktop.github.com/](https://desktop.github.com/)
+2. 如下图所示，将本项目通过Github Desktop打开或者直接下载压缩包
 
-This project is a starting point for a Flutter application.
+<img src="./docs/images/githubclone.png" style="zoom:50%;" />
 
-A few resources to get you started if this is your first Flutter project:
+3. 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
