@@ -2,21 +2,21 @@
 
 import 'package:flutter/material.dart';
 
-main() => runApp(MyApp());
+main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,211 +25,220 @@ class MyHomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            MyExpand(title: "Column:主轴", children: [
-              _buildContainer(
-                  title: "Column: 主轴start",
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Column: 主轴center",
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Column: 主轴end",
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Column: 主轴spaceAround",
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Column: 主轴spaceBetween",
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-            ]),
-            MyExpand(title: "Column:副轴", children: [
-              _buildContainer(
-                  title: "Column: 副轴start",
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Column: 副轴center",
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Column: 副轴end",
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-            ]),
-            MyExpand(title: "Row:主轴", children: [
-              _buildContainer(
-                  title: "Row: 主轴start",
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Row: 主轴center",
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Row: 主轴end",
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Row: 主轴spaceAround",
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Row: 主轴spaceBetween",
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-            ]),
-            MyExpand(title: "Row:副轴", children: [
-              _buildContainer(
-                  title: "Row: 副轴start",
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Row: 副轴center",
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-              _buildContainer(
-                  title: "Row: 副轴end",
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [_buildBlock(), _buildBlock(color: Colors.red)],
-                  )),
-            ]),
-            MyExpand(title: "Expanded", children: [
-              _buildContainer(
-                  title: "简单使用:以Row为例",
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: _buildBlock(
-                              text: "我被包裹在了Expanded中\n我在主轴方向上展开了！")),
-                      _buildBlock(color: Colors.red)
-                    ],
-                  )),
-              _buildContainer(
-                  title: "使用flex控制展开的比例",
-                  child: Row(
-                    children: [
-                      Expanded(flex: 3, child: _buildBlock(text: "flex:3")),
-                      Expanded(
-                          flex: 2,
-                          child:
-                              _buildBlock(text: "flex:2", color: Colors.red)),
-                      Expanded(
-                          flex: 1,
-                          child:
-                              _buildBlock(text: "flex:1", color: Colors.green))
-                    ],
-                  )),
-            ]),
-            MyExpand(title: "Stack：无Position控制", children: [
-              _buildContainer(
-                  title: "Stack默认alignment为topLeft",
-                  child: Stack(
-                    alignment: Alignment.topLeft,
-                    children: [
-                      _buildBlock(color: Colors.grey, sideLength: 200),
-                      _buildBlock(color: Colors.blue, sideLength: 100),
-                      _buildBlock(color: Colors.green, sideLength: 50),
-                    ],
-                  )),
-              _buildContainer(
-                  title: "Alignment.center",
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      _buildBlock(color: Colors.grey, sideLength: 200),
-                      _buildBlock(color: Colors.blue, sideLength: 100),
-                      _buildBlock(color: Colors.green, sideLength: 50),
-                    ],
-                  )),
-              _buildContainer(
-                  title: "Alignment.bottomRight",
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      _buildBlock(color: Colors.grey, sideLength: 200),
-                      _buildBlock(color: Colors.blue, sideLength: 100),
-                      _buildBlock(color: Colors.green, sideLength: 50),
-                    ],
-                  )),
-            ]),
-            MyExpand(title: "Stack：有Position控制", children: [
-              _buildContainer(
-                  title: "Position简单使用",
-                  child: Stack(
-                    alignment: Alignment.topLeft,
-                    children: [
-                      Positioned(
-                        left: 40,
-                        top: 10,
-                        child: _buildBlock(
-                            text: "left: 40\ntop: 10",
-                            sideLength: 100),
-                      ),
-                      Positioned(
-                        right: 0,
-                        bottom: 50,
-                        child: _buildBlock(
-                            text: "right: 0\nbottom: 50",
-                            sideLength: 100),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 70,
-                        child: _buildBlock(
-                            text: "left: 70\nbottom: 0",
-                            sideLength: 100),
-                      ),
-                    ],
-                  )),
+            _buildLayoutArea(),
 
-              _buildContainer(
-                  title: "Position.fill 占满Stack",
-                  child: Stack(
-                    alignment: Alignment.topLeft,
-                    children: [
-                      Positioned.fill(child: _buildBlock(text: "我被包裹在了Position.fill中\n占满了所有空间！",color: Colors.grey))
-                    ],
-                  )),
-            ]),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildLayoutArea(){
+    return Column(
+      children: [
+        MyExpandContainer(title: "Column:主轴", children: [
+          _buildContainer(
+              title: "Column: 主轴start",
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Column: 主轴center",
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Column: 主轴end",
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Column: 主轴spaceAround",
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Column: 主轴spaceBetween",
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+        ]),
+        MyExpandContainer(title: "Column:副轴", children: [
+          _buildContainer(
+              title: "Column: 副轴start",
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Column: 副轴center",
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Column: 副轴end",
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+        ]),
+        MyExpandContainer(title: "Row:主轴", children: [
+          _buildContainer(
+              title: "Row: 主轴start",
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Row: 主轴center",
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Row: 主轴end",
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Row: 主轴spaceAround",
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Row: 主轴spaceBetween",
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+        ]),
+        MyExpandContainer(title: "Row:副轴", children: [
+          _buildContainer(
+              title: "Row: 副轴start",
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Row: 副轴center",
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+          _buildContainer(
+              title: "Row: 副轴end",
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [_buildBlock(), _buildBlock(color: Colors.red)],
+              )),
+        ]),
+        MyExpandContainer(title: "Expanded", children: [
+          _buildContainer(
+              title: "简单使用:以Row为例",
+              child: Row(
+                children: [
+                  Expanded(
+                      child: _buildBlock(
+                          text: "我被包裹在了Expanded中\n我在主轴方向上展开了！")),
+                  _buildBlock(color: Colors.red)
+                ],
+              )),
+          _buildContainer(
+              title: "使用flex控制展开的比例",
+              child: Row(
+                children: [
+                  Expanded(flex: 3, child: _buildBlock(text: "flex:3")),
+                  Expanded(
+                      flex: 2,
+                      child:
+                      _buildBlock(text: "flex:2", color: Colors.red)),
+                  Expanded(
+                      flex: 1,
+                      child:
+                      _buildBlock(text: "flex:1", color: Colors.green))
+                ],
+              )),
+        ]),
+        MyExpandContainer(title: "Stack：无Position控制", children: [
+          _buildContainer(
+              title: "Stack默认alignment为topLeft",
+              child: Stack(
+                alignment: Alignment.topLeft,
+                children: [
+                  _buildBlock(color: Colors.grey, sideLength: 200),
+                  _buildBlock(color: Colors.blue, sideLength: 100),
+                  _buildBlock(color: Colors.green, sideLength: 50),
+                ],
+              )),
+          _buildContainer(
+              title: "Alignment.center",
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  _buildBlock(color: Colors.grey, sideLength: 200),
+                  _buildBlock(color: Colors.blue, sideLength: 100),
+                  _buildBlock(color: Colors.green, sideLength: 50),
+                ],
+              )),
+          _buildContainer(
+              title: "Alignment.bottomRight",
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  _buildBlock(color: Colors.grey, sideLength: 200),
+                  _buildBlock(color: Colors.blue, sideLength: 100),
+                  _buildBlock(color: Colors.green, sideLength: 50),
+                ],
+              )),
+        ]),
+        MyExpandContainer(title: "Stack：有Position控制", children: [
+          _buildContainer(
+              title: "Position简单使用",
+              child: Stack(
+                alignment: Alignment.topLeft,
+                children: [
+                  Positioned(
+                    left: 40,
+                    top: 10,
+                    child: _buildBlock(
+                        text: "left: 40\ntop: 10",
+                        sideLength: 100),
+                  ),
+                  Positioned(
+                    right: 0,
+                    bottom: 50,
+                    child: _buildBlock(
+                        text: "right: 0\nbottom: 50",
+                        sideLength: 100),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 70,
+                    child: _buildBlock(
+                        text: "left: 70\nbottom: 0",
+                        sideLength: 100),
+                  ),
+                ],
+              )),
+
+          _buildContainer(
+              title: "Position.fill 占满Stack",
+              child: Stack(
+                alignment: Alignment.topLeft,
+                children: [
+                  Positioned.fill(child: _buildBlock(text: "我被包裹在了Position.fill中\n占满了所有空间！",color: Colors.grey))
+                ],
+              )),
+        ]),
+      ],
     );
   }
 
@@ -248,7 +257,7 @@ class MyHomePage extends StatelessWidget {
         child: text != null
             ? Text(
                 text,
-                style: TextStyle(fontSize: 13, color: Colors.white),
+                style: const TextStyle(fontSize: 13, color: Colors.white),
                 maxLines: 100,
               )
             : null,
@@ -266,16 +275,16 @@ class MyHomePage extends StatelessWidget {
     }
     return Column(
       children: [
-        Divider(),
+        const Divider(),
         titleWidget,
         Container(
           width: double.infinity,
           height: 250.0,
           // 不到迫不得已，不要给Container设置height！ 此处仅仅用于演示
           // 外边距
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           // 内边距
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           // Container美化
           decoration: BoxDecoration(
               color: Colors.white,
@@ -291,33 +300,33 @@ class MyHomePage extends StatelessWidget {
   AppBar _buildAppBar() {
     return AppBar(
       leading: IconButton(
-        icon: Icon(Icons.ac_unit_outlined),
+        icon: const Icon(Icons.ac_unit_outlined),
         onPressed: () {},
       ),
-      title: Text("布局演示"),
+      title: const Text("布局演示"),
       actions: [
         IconButton(
-          icon: Icon(Icons.share),
+          icon: const Icon(Icons.share),
           onPressed: () {},
         ),
-        IconButton(icon: Icon(Icons.list), onPressed: () {})
+        IconButton(icon: const Icon(Icons.list), onPressed: () {})
       ],
     );
   }
 }
 
-class MyExpand extends StatefulWidget {
+class MyExpandContainer extends StatefulWidget {
   final String title;
   final List<Widget> children;
 
-  const MyExpand({Key? key, required this.title, required this.children})
+  const MyExpandContainer({Key? key, required this.title, required this.children})
       : super(key: key);
 
   @override
-  State<MyExpand> createState() => _MyExpandState();
+  State<MyExpandContainer> createState() => _MyExpandContainerState();
 }
 
-class _MyExpandState extends State<MyExpand> {
+class _MyExpandContainerState extends State<MyExpandContainer> {
   bool expanded = true;
 
   @override
@@ -328,8 +337,8 @@ class _MyExpandState extends State<MyExpand> {
           children: [
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(8)),
               child: Column(
@@ -340,23 +349,23 @@ class _MyExpandState extends State<MyExpand> {
                       Expanded(
                         child: Text(
                           widget.title,
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(color: Colors.white, fontSize: 20),
                           maxLines: 100,
                         ),
                       ),
                       AnimatedCrossFade(
-                          firstChild: Icon(
+                          firstChild: const Icon(
                             Icons.keyboard_arrow_right,
                             color: Colors.white,
                           ),
-                          secondChild: Icon(
+                          secondChild: const Icon(
                             Icons.keyboard_arrow_down,
                             color: Colors.white,
                           ),
                           crossFadeState: expanded
                               ? CrossFadeState.showFirst
                               : CrossFadeState.showSecond,
-                          duration: Duration(milliseconds: 500))
+                          duration: const Duration(milliseconds: 500))
                     ],
                   ),
                 ],
@@ -365,7 +374,7 @@ class _MyExpandState extends State<MyExpand> {
             AnimatedCrossFade(
                 firstChild: Container(),
                 secondChild: Container(
-                  margin: EdgeInsets.all(16),
+                  margin: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.blue),
                       borderRadius: BorderRadius.circular(8)),
@@ -376,7 +385,7 @@ class _MyExpandState extends State<MyExpand> {
                 crossFadeState: expanded
                     ? CrossFadeState.showFirst
                     : CrossFadeState.showSecond,
-                duration: Duration(milliseconds: 500))
+                duration: const Duration(milliseconds: 500))
           ],
         ),
         Positioned.fill(child: InkWell(
