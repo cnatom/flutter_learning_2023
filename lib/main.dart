@@ -21,26 +21,29 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: Column(
-        children: [
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
 
 
-          _buildContainer(
-            child: Column(
-              children: [
-                _buildBlock(),
-                _buildBlock(color: Colors.red)
-              ],
+            _buildContainer(
+                title: "我是标题",
+                child: Column(
+                  children: [
+                    _buildBlock(),
+                    _buildBlock(color: Colors.red)
+                  ],
+                )
             )
-          )
 
 
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildBlock({Color color = Colors.blue}){
+  Widget _buildBlock({Color color = Colors.blue}) {
     return Container(
       height: 50,
       width: 50,
@@ -48,25 +51,37 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildContainer({Widget? child}){
-    return Container(
-      width: double.infinity,
-      height: 250.0,
-      // 不到迫不得已，不要给Container设置height！ 此处仅仅用于演示
-      // 外边距
-      margin: EdgeInsets.all(16),
-      // 内边距
-      padding: EdgeInsets.all(0),
-      // Container美化
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.blue),
-          borderRadius: BorderRadius.circular(8)),
-      // 放在Container内的组件
-      child: child,
+  Widget _buildContainer({String? title, Widget? child}) {
+    Widget titleWidget = Container();
+    if (title != null) {
+      titleWidget = Text(
+        title,
+        style: const TextStyle(color: Colors.blue, fontSize: 20),
+      );
+    }
+    return Column(
+      children: [
+        Divider(),
+        titleWidget,
+        Container(
+          width: double.infinity,
+          height: 250.0,
+          // 不到迫不得已，不要给Container设置height！ 此处仅仅用于演示
+          // 外边距
+          margin: EdgeInsets.all(16),
+          // 内边距
+          padding: EdgeInsets.all(0),
+          // Container美化
+          decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.blue),
+              borderRadius: BorderRadius.circular(8)),
+          // 放在Container内的组件
+          child: child,
+        )
+      ],
     );
   }
-
 
   AppBar _buildAppBar() {
     return AppBar(
