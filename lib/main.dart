@@ -23,36 +23,47 @@ class MyHomePage extends StatelessWidget {
       appBar: _buildAppBar(),
       body: Column(
         children: [
-          // 一个Container，提供用来演示布局的边框
-          Container(
-            width: double.infinity,
-            height: 250.0,
-            // 不到迫不得已，不要给Container设置height！ 此处仅仅用于演示
-            // 外边距
-            margin: EdgeInsets.all(16),
-            // 内边距
-            padding: EdgeInsets.all(0),
-            // Container美化
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.blue),
-                borderRadius: BorderRadius.circular(8)),
-            // 放在Container内的组件
+
+
+          _buildContainer(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start, // 主轴 start
-              crossAxisAlignment: CrossAxisAlignment.center, // 副轴 center
               children: [
-                // 一个蓝色的小方块，用于演示布局
-                Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.blue,
-                )
+                _buildBlock(),
+                _buildBlock(color: Colors.red)
               ],
-            ),
-          ),
+            )
+          )
+
+
         ],
       ),
+    );
+  }
+
+  Widget _buildBlock({Color color = Colors.blue}){
+    return Container(
+      height: 50,
+      width: 50,
+      color: color,
+    );
+  }
+
+  Widget _buildContainer({Widget? child}){
+    return Container(
+      width: double.infinity,
+      height: 250.0,
+      // 不到迫不得已，不要给Container设置height！ 此处仅仅用于演示
+      // 外边距
+      margin: EdgeInsets.all(16),
+      // 内边距
+      padding: EdgeInsets.all(0),
+      // Container美化
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.blue),
+          borderRadius: BorderRadius.circular(8)),
+      // 放在Container内的组件
+      child: child,
     );
   }
 
